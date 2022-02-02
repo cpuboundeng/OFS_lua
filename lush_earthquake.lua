@@ -1,6 +1,6 @@
---Settings = {}
--- Settings.Points = 1		-- how much points to add
---SetSettings(Settings)
+Settings = {}
+Settings.Speed = 0.5		-- how much points to add
+SetSettings(Settings)
 
 -- prevent invalid numbers
 --Settings.Points = math.floor(clamp(Settings.Points,1,10))
@@ -14,6 +14,12 @@ local dt = 0 		--delta timestamp
 local dp = 0 		--delta position
 local LastPos = 0
 local LastAt = 0
+
+function addPoint(duration, position)
+	TmpScript:AddActionUnordered((duration*Settings.Speed)+LastAt, position)
+	LastAt = (duration*Settings.Speed)+LastAt
+	
+end
 
 
 for idx, action in ipairs(CurrentScript.actions) do
@@ -41,28 +47,26 @@ for idx, action in ipairs(CurrentScript.actions) do
 		end		
 	end
 end
-print (LastAt)
+--print (LastAt)
 
-TmpScript:AddActionUnordered(LastAt, 0)
-TmpScript:AddActionUnordered(LastAt+165, 30)
-TmpScript:AddActionUnordered(LastAt+165+870, 30)
-TmpScript:AddActionUnordered(LastAt+165+870+100, 40)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870, 40)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130, 50)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870, 50)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200, 100)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800, 100)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200, 60)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800, 60)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165, 100)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830, 100)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830+200, 60)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830+200+800, 60)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830+200+800+200, 100)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830+200+800+200+1800, 100)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830+200+800+200+1800+200, 0)
-TmpScript:AddActionUnordered(LastAt+165+870+100+870+130+870+200+800+200+800+165+830+200+800+200+1800+200+800, 0)
-
+addPoint(330, 30)
+addPoint(1740,30)
+addPoint(200,40)
+addPoint(1740,40)
+addPoint(260,50)
+addPoint(1740,50)
+addPoint(400,100)
+addPoint(1600,100)
+addPoint(400,60)
+addPoint(1600,60)
+addPoint(330,100)
+addPoint(1660,100)
+addPoint(400,60)
+addPoint(1600,60)
+addPoint(400,100)
+addPoint(3600,100)
+addPoint(400,0)
+addPoint(1600,0)
 
 
 
